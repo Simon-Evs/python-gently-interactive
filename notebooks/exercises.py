@@ -62,11 +62,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def hello():
-    print("Hello,world!")
-    print("What is your name?")
-    name = input()
-    print(f"Hello, {name}")
+    pass
 
 
 @app.cell
@@ -125,13 +123,12 @@ def _(mo):
 
 @app.cell
 def _():
+    # TODO: implement
     def convertToCelsius(fahrenheit):
-        celsius = (fahrenheit - 32) * (5 / 9)
-        return celsius
+        pass
 
     def convertToFahrenheit(celsius):
-        fahrenheit = celsius * (9 / 5) + 32
-        return fahrenheit
+        pass
 
     return convertToCelsius, convertToFahrenheit
 
@@ -182,11 +179,12 @@ def _(mo):
 
 @app.cell
 def _():
+    # TODO: implement
     def isOdd(num):
-        return num % 2 == 1
+        pass
 
     def isEven(num):
-        return num % 2 == 0
+        pass
 
     return isEven, isOdd
 
@@ -242,17 +240,18 @@ def _(mo):
 
 @app.cell
 def _():
+    # TODO: implement
     def area(length, width):
-        return length * width
+        pass
 
     def perimeter(length, width):
-        return length * 2 + width * 2
+        pass
 
     def volume(length, width, height):
-        return length * width * height
+        pass
 
     def surfaceArea(length, width, height):
-        return ((length * width) + (length * height) + (width * height)) * 2
+        pass
 
     return area, perimeter, surfaceArea, volume
 
@@ -314,17 +313,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def fizzBuzz(upTo: int):
-    for number in range(1, upTo + 1):
-        if number % 15 == 0:
-            print('FizzBuzz', end=' ')
-        elif number % 3 == 0:
-            print('Fizz', end=' ')
-        elif number % 5 == 0:
-            print('Buzz', end=' ')
-        else:
-            print(number, end=' ')
-    print()
+    pass
 
 
 @app.cell
@@ -384,18 +375,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def ordinalSuffix(number: int):
-    numString = str(number)
-    if numString[-2:] in ('11', '12', '13'):
-        return numString + 'th'
-    if numString[-1:] == '1':
-        return numString + 'st'
-    if numString[-1:] == '2':
-        return numString + 'nd'
-    if numString[-1:] == '3':
-        return numString + 'rd'
-    else:
-        return numString + 'th'
+    pass
 
 
 @app.cell
@@ -455,9 +437,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def printASCIITable():
-    for i in range(32, 127):
-        print(f"{i} {chr(i)}")
+    pass
 
 
 @app.cell
@@ -511,17 +493,15 @@ def _(mo):
 
 @app.cell
 def _():
+    # TODO: implement
     def writeToFile(filename, text):
-        with open(filename, "w") as f:
-            f.write(text)
+        pass
 
     def appendToFile(filename, text):
-        with open(filename, "a") as f:
-            f.write(text)
+        pass
 
     def readFromFile(filename):
-        with open(filename, "r") as f:
-            return f.read()
+        pass
 
     return appendToFile, readFromFile, writeToFile
 
@@ -576,14 +556,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def getChessSquareColor(column: int, row: int):
-    ttl = column + row
-    if column < 0 or column > 7 or row < 0 or row > 7:
-        return ""
-    if ttl % 2 == 1:
-        return "black"
-    else:
-        return "white"
+    pass
 
 
 @app.cell
@@ -633,17 +608,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def findAndReplace(text: str, oldText: str, newText: str):
-    replacedText = ""
-    i = 0
-    while i < len(text):
-        if text[i:i + len(oldText)] == oldText:
-            replacedText += newText
-            i += len(oldText)
-        else:
-            replacedText += text[i]
-            i += 1
-    return replacedText
+    pass
 
 
 @app.cell
@@ -700,23 +667,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def getHoursMinutesSeconds(totalSeconds):
-    hours = totalSeconds // 3600
-    min = (totalSeconds % 3600) // 60
-    sec = totalSeconds % 60
-
-    hms = []
-
-    if totalSeconds == 0:
-        hms.append(str(totalSeconds) + 's')
-    if hours > 0:
-        hms.append(str(hours) + 'h')
-    if min > 0:
-        hms.append(str(min) + 'm')
-    if sec > 0:
-        hms.append(str(sec) + 's')
-
-    return ' '.join(hms)
+    pass
 
 
 @app.cell
@@ -780,17 +733,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def getSmallest(numbers):
-    if len(numbers) == 0:
-        return None
-
-    smallest = numbers[0]
-
-    for num in numbers:
-        if num < smallest:
-            smallest = num
-
-    return smallest
+    pass
 
 
 @app.cell
@@ -844,17 +789,12 @@ def _(mo):
 
 @app.cell
 def _():
+    # TODO: implement
     def calculateSum(numbers):
-        total = 0
-        for num in numbers:
-            total += num
-        return total
+        pass
 
     def calculateProduct(numbers):
-        total = 1
-        for num in numbers:
-            total *= num
-        return total
+        pass
 
     return calculateProduct, calculateSum
 
@@ -910,15 +850,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def average(numbers):
-    if len(numbers) == 0:
-        return 0
-
-    total = 0
-    for num in numbers:
-        total += num
-
-    return total / len(numbers)
+    pass
 
 
 @app.cell
@@ -968,20 +902,9 @@ def _(mo):
 
 
 @app.function
+# TODO: implement
 def median(numbers):
-    number_len = len(numbers)
-
-    if number_len == 0:
-        return None
-
-    numbers.sort()
-
-    middleIndex = number_len // 2
-
-    if number_len % 2 == 0:
-        return (numbers[middleIndex] + numbers[middleIndex - 1]) / 2
-    else:
-        return numbers[middleIndex]
+    pass
 
 
 @app.cell
