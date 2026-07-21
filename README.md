@@ -12,9 +12,6 @@ uv sync
 
 # Open the notebook (edit mode - you can write and save your solutions)
 uv run marimo edit notebooks/exercises.py
-
-# Or run as an app (read-only - for viewing/demo only)
-uv run marimo run notebooks/exercises.py
 ```
 
 ### How it works

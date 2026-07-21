@@ -67,6 +67,22 @@ def hello():
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Use `print()` to display text and `input()` to get the user's name. Store it in a variable.",
+        hint2="Concatenate 'Hello, ' with the user's name using `+` or an f-string. Make sure there's a space after the comma.",
+        solution="""```python
+    def hello():
+    print("Hello,world!")
+    print("What is your name?")
+    name = input()
+    print(f"Hello, {name}")
+    ```"""
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -89,22 +105,6 @@ def _(mo):
         "Hello, Simon\n" in _out,
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Use `print()` to display text and `input()` to get the user's name. Store it in a variable.",
-        hint2="Concatenate 'Hello, ' with the user's name using `+` or an f-string. Make sure there's a space after the comma.",
-        solution="""```python
-    def hello():
-    print("Hello,world!")
-    print("What is your name?")
-    name = input()
-    print(f"Hello, {name}")
-    ```"""
-    )
     return
 
 
@@ -133,21 +133,6 @@ def _():
     return convertToCelsius, convertToFahrenheit
 
 
-@app.cell
-def _(convertToCelsius, convertToFahrenheit, mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        convertToCelsius(0) == -17.77777777777778,
-        convertToCelsius(180) == 82.22222222222223,
-        convertToFahrenheit(0) == 32,
-        convertToFahrenheit(100) == 212,
-        convertToCelsius(convertToFahrenheit(15)) == 15,
-        convertToCelsius(convertToFahrenheit(42)) == 42.00000000000001,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -161,6 +146,21 @@ def _(show_hints):
     return celsius * (9 / 5) + 32
     ```"""
     )
+    return
+
+
+@app.cell
+def _(convertToCelsius, convertToFahrenheit, mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        convertToCelsius(0) == -17.77777777777778,
+        convertToCelsius(180) == 82.22222222222223,
+        convertToFahrenheit(0) == 32,
+        convertToFahrenheit(100) == 212,
+        convertToCelsius(convertToFahrenheit(15)) == 15,
+        convertToCelsius(convertToFahrenheit(42)) == 42.00000000000001,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -189,6 +189,22 @@ def _():
     return isEven, isOdd
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Use the `%` modulo operator. `number % 2` gives 0 for even numbers and 1 for odd.",
+        hint2="Return a boolean comparison: `return number % 2 == 1` for isOdd. Think about what happens with negative numbers.",
+        solution="""```python
+    def isOdd(num):
+    return num % 2 == 1
+
+    def isEven(num):
+    return num % 2 == 0
+    ```"""
+    )
+    return
+
+
 @app.cell
 def _(isEven, isOdd, mo):
     # 📋 Tests - run to check your solution
@@ -206,22 +222,6 @@ def _(isEven, isOdd, mo):
         isEven(-3) is False,
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Use the `%` modulo operator. `number % 2` gives 0 for even numbers and 1 for odd.",
-        hint2="Return a boolean comparison: `return number % 2 == 1` for isOdd. Think about what happens with negative numbers.",
-        solution="""```python
-    def isOdd(num):
-    return num % 2 == 1
-
-    def isEven(num):
-    return num % 2 == 0
-    ```"""
-    )
     return
 
 
@@ -256,27 +256,6 @@ def _():
     return area, perimeter, surfaceArea, volume
 
 
-@app.cell
-def _(area, mo, perimeter, surfaceArea, volume):
-    # 📋 Tests - run to check your solution
-    _results = [
-        area(10, 10) == 100,
-        area(0, 9999) == 0,
-        area(5, 8) == 40,
-        perimeter(10, 10) == 40,
-        perimeter(0, 9999) == 19998,
-        perimeter(5, 8) == 26,
-        volume(10, 10, 10) == 1000,
-        volume(9999, 0, 9999) == 0,
-        volume(5, 8, 10) == 400,
-        surfaceArea(10, 10, 10) == 600,
-        surfaceArea(9999, 0, 9999) == 199960002,
-        surfaceArea(5, 8, 10) == 340,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -299,6 +278,27 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(area, mo, perimeter, surfaceArea, volume):
+    # 📋 Tests - run to check your solution
+    _results = [
+        area(10, 10) == 100,
+        area(0, 9999) == 0,
+        area(5, 8) == 40,
+        perimeter(10, 10) == 40,
+        perimeter(0, 9999) == 19998,
+        perimeter(5, 8) == 26,
+        volume(10, 10, 10) == 1000,
+        volume(9999, 0, 9999) == 0,
+        volume(5, 8, 10) == 400,
+        surfaceArea(10, 10, 10) == 600,
+        surfaceArea(9999, 0, 9999) == 199960002,
+        surfaceArea(5, 8, 10) == 340,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -316,27 +316,6 @@ def _(mo):
 # TODO: implement
 def fizzBuzz(upTo: int):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    import io as _io
-    from contextlib import redirect_stdout as _redirect_stdout
-
-    def _capture(n):
-        buf = _io.StringIO()
-        with _redirect_stdout(buf):
-            fizzBuzz(n)
-        return buf.getvalue().strip()
-
-    _results = [
-        _capture(5) == "1 2 Fizz 4 Buzz",
-        _capture(15) == "1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz",
-        _capture(3) == "1 2 Fizz",
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -361,6 +340,27 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+
+    def _capture(n):
+        buf = _io.StringIO()
+        with _redirect_stdout(buf):
+            fizzBuzz(n)
+        return buf.getvalue().strip()
+
+    _results = [
+        _capture(5) == "1 2 Fizz 4 Buzz",
+        _capture(15) == "1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz",
+        _capture(3) == "1 2 Fizz",
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -378,26 +378,6 @@ def _(mo):
 # TODO: implement
 def ordinalSuffix(number: int):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        ordinalSuffix(0) == '0th',
-        ordinalSuffix(1) == '1st',
-        ordinalSuffix(2) == '2nd',
-        ordinalSuffix(3) == '3rd',
-        ordinalSuffix(4) == '4th',
-        ordinalSuffix(10) == '10th',
-        ordinalSuffix(11) == '11th',
-        ordinalSuffix(12) == '12th',
-        ordinalSuffix(13) == '13th',
-        ordinalSuffix(14) == '14th',
-        ordinalSuffix(101) == '101st',
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -423,6 +403,26 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        ordinalSuffix(0) == '0th',
+        ordinalSuffix(1) == '1st',
+        ordinalSuffix(2) == '2nd',
+        ordinalSuffix(3) == '3rd',
+        ordinalSuffix(4) == '4th',
+        ordinalSuffix(10) == '10th',
+        ordinalSuffix(11) == '11th',
+        ordinalSuffix(12) == '12th',
+        ordinalSuffix(13) == '13th',
+        ordinalSuffix(14) == '14th',
+        ordinalSuffix(101) == '101st',
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -440,6 +440,20 @@ def _(mo):
 # TODO: implement
 def printASCIITable():
     pass
+
+
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Use a `for` loop over `range(32, 127)` and Python's `chr()` function to convert integers to characters.",
+        hint2="Print each line as `f\"{i} {chr(i)}\"`. Remember range's upper bound is exclusive, so use 127 not 126.",
+        solution="""```python
+    def printASCIITable():
+    for i in range(32, 127):
+        print(f"{i} {chr(i)}")
+    ```"""
+    )
+    return
 
 
 @app.cell
@@ -461,20 +475,6 @@ def _(mo):
         len(_lines) == 95,
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Use a `for` loop over `range(32, 127)` and Python's `chr()` function to convert integers to characters.",
-        hint2="Print each line as `f\"{i} {chr(i)}\"`. Remember range's upper bound is exclusive, so use 127 not 126.",
-        solution="""```python
-    def printASCIITable():
-    for i in range(32, 127):
-        print(f"{i} {chr(i)}")
-    ```"""
-    )
     return
 
 
@@ -506,20 +506,6 @@ def _():
     return appendToFile, readFromFile, writeToFile
 
 
-@app.cell
-def _(appendToFile, mo, readFromFile, writeToFile):
-    # 📋 Tests - run to check your solution
-    import tempfile, os
-    _tmp = tempfile.mktemp(suffix=".txt")
-    writeToFile(_tmp, 'Hello!\n')
-    appendToFile(_tmp, 'Goodbye!\n')
-    _content = readFromFile(_tmp)
-    os.remove(_tmp)
-    _results = [_content == 'Hello!\nGoodbye!\n']
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -542,6 +528,20 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(appendToFile, mo, readFromFile, writeToFile):
+    # 📋 Tests - run to check your solution
+    import tempfile, os
+    _tmp = tempfile.mktemp(suffix=".txt")
+    writeToFile(_tmp, 'Hello!\n')
+    appendToFile(_tmp, 'Goodbye!\n')
+    _content = readFromFile(_tmp)
+    os.remove(_tmp)
+    _results = [_content == 'Hello!\nGoodbye!\n']
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -559,21 +559,6 @@ def _(mo):
 # TODO: implement
 def getChessSquareColor(column: int, row: int):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        getChessSquareColor(0, 0) == 'white',
-        getChessSquareColor(1, 0) == 'black',
-        getChessSquareColor(0, 1) == 'black',
-        getChessSquareColor(7, 7) == 'white',
-        getChessSquareColor(0, 8) == '',
-        getChessSquareColor(2, 9) == '',
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -594,6 +579,21 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        getChessSquareColor(0, 0) == 'white',
+        getChessSquareColor(1, 0) == 'black',
+        getChessSquareColor(0, 1) == 'black',
+        getChessSquareColor(7, 7) == 'white',
+        getChessSquareColor(0, 8) == '',
+        getChessSquareColor(2, 9) == '',
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -611,20 +611,6 @@ def _(mo):
 # TODO: implement
 def findAndReplace(text: str, oldText: str, newText: str):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        findAndReplace('The fox', 'fox', 'dog') == 'The dog',
-        findAndReplace('fox', 'fox', 'dog') == 'dog',
-        findAndReplace('Firefox', 'fox', 'dog') == 'Firedog',
-        findAndReplace('foxfox', 'fox', 'dog') == 'dogdog',
-        findAndReplace('The Fox and fox.', 'fox', 'dog') == 'The Fox and dog.',
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -649,6 +635,20 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        findAndReplace('The fox', 'fox', 'dog') == 'The dog',
+        findAndReplace('fox', 'fox', 'dog') == 'dog',
+        findAndReplace('Firefox', 'fox', 'dog') == 'Firedog',
+        findAndReplace('foxfox', 'fox', 'dog') == 'dogdog',
+        findAndReplace('The Fox and fox.', 'fox', 'dog') == 'The Fox and dog.',
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -670,26 +670,6 @@ def _(mo):
 # TODO: implement
 def getHoursMinutesSeconds(totalSeconds):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _cases = [
-        (0, "0s"),
-        (59, "59s"),
-        (60, "1m"),
-        (61, "1m 1s"),
-        (3599, "59m 59s"),
-        (3600, "1h"),
-        (3661, "1h 1m 1s"),
-        (7322, "2h 2m 2s"),
-        (86400, "24h"),
-        (86522, "24h 2m 2s"),
-    ]
-    _results = [getHoursMinutesSeconds(s) == expected for s, expected in _cases]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -717,6 +697,26 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _cases = [
+        (0, "0s"),
+        (59, "59s"),
+        (60, "1m"),
+        (61, "1m 1s"),
+        (3599, "59m 59s"),
+        (3600, "1h"),
+        (3661, "1h 1m 1s"),
+        (7322, "2h 2m 2s"),
+        (86400, "24h"),
+        (86522, "24h 2m 2s"),
+    ]
+    _results = [getHoursMinutesSeconds(s) == expected for s, expected in _cases]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -738,20 +738,6 @@ def getSmallest(numbers):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        getSmallest([1, 2, 3]) == 1,
-        getSmallest([3, 2, 1]) == 1,
-        getSmallest([28, 25, 42, 2, 28]) == 2,
-        getSmallest([1]) == 1,
-        getSmallest([]) is None,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -768,6 +754,20 @@ def _(show_hints):
     return smallest
     ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        getSmallest([1, 2, 3]) == 1,
+        getSmallest([3, 2, 1]) == 1,
+        getSmallest([28, 25, 42, 2, 28]) == 2,
+        getSmallest([1]) == 1,
+        getSmallest([]) is None,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -799,19 +799,6 @@ def _():
     return calculateProduct, calculateSum
 
 
-@app.cell
-def _(calculateProduct, calculateSum, mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        calculateSum([]) == 0,
-        calculateSum([2, 4, 6, 8, 10]) == 30,
-        calculateProduct([]) == 1,
-        calculateProduct([2, 4, 6, 8, 10]) == 3840,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -831,6 +818,19 @@ def _(show_hints):
     return total
     ```"""
     )
+    return
+
+
+@app.cell
+def _(calculateProduct, calculateSum, mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        calculateSum([]) == 0,
+        calculateSum([2, 4, 6, 8, 10]) == 30,
+        calculateProduct([]) == 1,
+        calculateProduct([2, 4, 6, 8, 10]) == 3840,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -855,19 +855,6 @@ def average(numbers):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        average([1, 2, 3]) == 2,
-        average([1, 2, 3, 1, 2, 3, 1, 2, 3]) == 2,
-        average([12, 20, 37]) == 23,
-        average([0, 0, 0, 0, 0]) == 0,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -883,6 +870,19 @@ def _(show_hints):
     return total / len(numbers)
     ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        average([1, 2, 3]) == 2,
+        average([1, 2, 3, 1, 2, 3, 1, 2, 3]) == 2,
+        average([12, 20, 37]) == 23,
+        average([0, 0, 0, 0, 0]) == 0,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -907,19 +907,6 @@ def median(numbers):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        median([]) is None,
-        median([1, 2, 3]) == 2,
-        median([3, 7, 10, 4, 1, 9, 6, 5, 2, 8]) == 5.5,
-        median([3, 7, 10, 4, 1, 9, 6, 2, 8]) == 6,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -937,6 +924,19 @@ def _(show_hints):
         return numbers[middleIndex]
     ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        median([]) is None,
+        median([1, 2, 3]) == 2,
+        median([3, 7, 10, 4, 1, 9, 6, 5, 2, 8]) == 5.5,
+        median([3, 7, 10, 4, 1, 9, 6, 2, 8]) == 6,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -958,24 +958,6 @@ def _(mo):
 # TODO: implement
 def mode(numbers):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    import random as _rng16
-    _rng16.seed(42)
-    _td16 = [1, 2, 3, 4, 4]
-    _results = [
-        mode([]) is None,
-        mode([1, 2, 3, 4, 4]) == 4,
-        mode([1, 1, 2, 3, 4]) == 1,
-    ]
-    for _i in range(1000):
-        _rng16.shuffle(_td16)
-        _results.append(mode(_td16) == 4)
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -1003,6 +985,24 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import random as _rng16
+    _rng16.seed(42)
+    _td16 = [1, 2, 3, 4, 4]
+    _results = [
+        mode([]) is None,
+        mode([1, 2, 3, 4, 4]) == 4,
+        mode([1, 1, 2, 3, 4]) == 1,
+    ]
+    for _i in range(1000):
+        _rng16.shuffle(_td16)
+        _results.append(mode(_td16) == 4)
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1020,21 +1020,9 @@ def _(mo):
 
 @app.function
 # TODO: implement
+
 def rollDice(numberOfDice):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [rollDice(0) == 0]
-    for _i in range(1000):
-        _results.append(1 <= rollDice(1) <= 6)
-        _results.append(2 <= rollDice(2) <= 12)
-        _results.append(3 <= rollDice(3) <= 18)
-        _results.append(100 <= rollDice(100) <= 600)
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -1052,6 +1040,19 @@ def _(show_hints):
     return total
     ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [rollDice(0) == 0]
+    for _i in range(1000):
+        _results.append(1 <= rollDice(1) <= 6)
+        _results.append(2 <= rollDice(2) <= 12)
+        _results.append(3 <= rollDice(3) <= 18)
+        _results.append(100 <= rollDice(100) <= 600)
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1076,6 +1077,21 @@ def getCostOfCoffee(numberOfCoffees, pricePerCoffee):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="For every 9 coffees, one is free. Calculate how many free coffees: `numberOfCoffees // 9`.",
+        hint2="Paid coffees = `numberOfCoffees - numberOfFreeCoffees`. Return `numberOfPaidCoffees * pricePerCoffee`.",
+        solution="""```python
+    def getCostOfCoffee(numberOfCoffees, pricePerCoffee):
+    numberOfFreeCoffees = numberOfCoffees // 9
+    numberOfPaidCoffees = numberOfCoffees - numberOfFreeCoffees
+    return numberOfPaidCoffees * pricePerCoffee
+    ```"""
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1095,21 +1111,6 @@ def _(mo):
             getCostOfCoffee(30, _i) == 27 * _i,
         ])
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="For every 9 coffees, one is free. Calculate how many free coffees: `numberOfCoffees // 9`.",
-        hint2="Paid coffees = `numberOfCoffees - numberOfFreeCoffees`. Return `numberOfPaidCoffees * pricePerCoffee`.",
-        solution="""```python
-    def getCostOfCoffee(numberOfCoffees, pricePerCoffee):
-    numberOfFreeCoffees = numberOfCoffees // 9
-    numberOfPaidCoffees = numberOfCoffees - numberOfFreeCoffees
-    return numberOfPaidCoffees * pricePerCoffee
-    ```"""
-    )
     return
 
 
@@ -1140,27 +1141,6 @@ def _():
         pass
 
     return LOWER_LETTERS, NUMBERS, SPECIAL, UPPER_LETTERS, generatePassword
-
-
-@app.cell
-def _(LOWER_LETTERS, NUMBERS, SPECIAL, UPPER_LETTERS, generatePassword, mo):
-    # 📋 Tests - run to check your solution
-    _results = [len(generatePassword(8)) == 12]
-    _pw = generatePassword(14)
-    _results.append(len(_pw) == 14)
-    _hasLower = _hasUpper = _hasNum = _hasSpecial = False
-    for _ch in _pw:
-        if _ch in LOWER_LETTERS:
-            _hasLower = True
-        if _ch in UPPER_LETTERS:
-            _hasUpper = True
-        if _ch in NUMBERS:
-            _hasNum = True
-        if _ch in SPECIAL:
-            _hasSpecial = True
-    _results.append(_hasLower and _hasUpper and _hasNum and _hasSpecial)
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
@@ -1194,6 +1174,27 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(LOWER_LETTERS, NUMBERS, SPECIAL, UPPER_LETTERS, generatePassword, mo):
+    # 📋 Tests - run to check your solution
+    _results = [len(generatePassword(8)) == 12]
+    _pw = generatePassword(14)
+    _results.append(len(_pw) == 14)
+    _hasLower = _hasUpper = _hasNum = _hasSpecial = False
+    for _ch in _pw:
+        if _ch in LOWER_LETTERS:
+            _hasLower = True
+        if _ch in UPPER_LETTERS:
+            _hasUpper = True
+        if _ch in NUMBERS:
+            _hasNum = True
+        if _ch in SPECIAL:
+            _hasSpecial = True
+    _results.append(_hasLower and _hasUpper and _hasNum and _hasSpecial)
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1215,21 +1216,6 @@ def isLeapYear(year):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        isLeapYear(1999) == False,
-        isLeapYear(2000) == True,
-        isLeapYear(2001) == False,
-        isLeapYear(2004) == True,
-        isLeapYear(2100) == False,
-        isLeapYear(2400) == True,
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -1247,6 +1233,21 @@ def _(show_hints):
         return False
     ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        isLeapYear(1999) == False,
+        isLeapYear(2000) == True,
+        isLeapYear(2001) == False,
+        isLeapYear(2004) == True,
+        isLeapYear(2100) == False,
+        isLeapYear(2400) == True,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1271,6 +1272,16 @@ def isValidDate(year, month, day):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Check month is 1-12 first. Then check the day range depends on the month (30 vs 31 vs 28/29 for Feb).",
+        hint2="Check leap year for Feb 29. September, April, June, November have 30 days. Use `if/elif` chain for each month group.",
+        solution="```python\ndef isValidDate(year, month, day):\n    if not (1 <= month <= 12):\n        return False\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        return 1 <= day <= 31\n    elif month in (4, 6, 9, 11):\n        return 1 <= day <= 30\n    else:  # February\n        if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n            return 1 <= day <= 29\n        return 1 <= day <= 28\n```"
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1286,16 +1297,6 @@ def _(mo):
         isValidDate(1666, 4, 0) == False,
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Check month is 1-12 first. Then check the day range depends on the month (30 vs 31 vs 28/29 for Feb).",
-        hint2="Check leap year for Feb 29. September, April, June, November have 30 days. Use `if/elif` chain for each month group.",
-        solution="```python\ndef isValidDate(year, month, day):\n    if not (1 <= month <= 12):\n        return False\n    if month in (1, 3, 5, 7, 8, 10, 12):\n        return 1 <= day <= 31\n    elif month in (4, 6, 9, 11):\n        return 1 <= day <= 30\n    else:  # February\n        if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):\n            return 1 <= day <= 29\n        return 1 <= day <= 28\n```"
-    )
     return
 
 
@@ -1320,6 +1321,16 @@ def rpsWinner(player1, player2):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Check if both moves are the same first (tie). Then check the 3 winning conditions for player 1.",
+        hint2="Player 1 wins if: rock vs scissors, paper vs rock, scissors vs paper. Everything else is player 2 winning.",
+        solution="```python\ndef rpsWinner(player1, player2):\n    if player1 == player2:\n        return 'tie'\n    if (player1 == 'rock' and player2 == 'scissors') or \\\n       (player1 == 'paper' and player2 == 'rock') or \\\n       (player1 == 'scissors' and player2 == 'paper'):\n        return 'player one'\n    return 'player two'\n```"
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1335,16 +1346,6 @@ def _(mo):
         rpsWinner('scissors', 'scissors') == 'tie',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Check if both moves are the same first (tie). Then check the 3 winning conditions for player 1.",
-        hint2="Player 1 wins if: rock vs scissors, paper vs rock, scissors vs paper. Everything else is player 2 winning.",
-        solution="```python\ndef rpsWinner(player1, player2):\n    if player1 == player2:\n        return 'tie'\n    if (player1 == 'rock' and player2 == 'scissors') or \\\n       (player1 == 'paper' and player2 == 'rock') or \\\n       (player1 == 'scissors' and player2 == 'paper'):\n        return 'player one'\n    return 'player two'\n```"
-    )
     return
 
 
@@ -1465,6 +1466,16 @@ def printHandshakes(people):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Use nested for loops where the inner loop starts after the outer loop's index to avoid duplicates.",
+        hint2="`for i in range(0, len(people)-1)` and `for j in range(i+1, len(people))`. Count each pair.",
+        solution="```python\ndef printHandshakes(people):\n    numberOfHandshakes = 0\n    for i in range(0, len(people) - 1):\n        for j in range(i + 1, len(people)):\n            print(people[i], 'shakes hands with', people[j])\n            numberOfHandshakes += 1\n    return numberOfHandshakes\n```"
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1474,16 +1485,6 @@ def _(mo):
         printHandshakes(['Alice', 'Bob', 'Carol', 'David']) == 6,
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Use nested for loops where the inner loop starts after the outer loop's index to avoid duplicates.",
-        hint2="`for i in range(0, len(people)-1)` and `for j in range(i+1, len(people))`. Count each pair.",
-        solution="```python\ndef printHandshakes(people):\n    numberOfHandshakes = 0\n    for i in range(0, len(people) - 1):\n        for j in range(i + 1, len(people)):\n            print(people[i], 'shakes hands with', people[j])\n            numberOfHandshakes += 1\n    return numberOfHandshakes\n```"
-    )
     return
 
 
@@ -1639,16 +1640,6 @@ def convertIntToStr(integerNum):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = []
-    for _i in range(-10000, 10000):
-        _results.append(convertIntToStr(_i) == str(_i))
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -1656,6 +1647,16 @@ def _(show_hints):
         hint2="Map digits 0-9 to strings with a dictionary. Handle 0 and negatives as special cases.",
         solution="Use a while loop: `onesPlaceDigit = integerNum % 10`, prepend the string digit, then `integerNum //= 10`.",
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = []
+    for _i in range(-10000, 10000):
+        _results.append(convertIntToStr(_i) == str(_i))
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1680,16 +1681,6 @@ def convertStrToInt(stringNum):
     pass
 
 
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = []
-    for _i in range(-10000, 10000):
-        _results.append(convertStrToInt(str(_i)) == _i)
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
@@ -1697,6 +1688,16 @@ def _(show_hints):
         hint2="Multiply running total by 10, then add the current digit. Handle negative sign at start.",
         solution="Loop over chars, `integerNum = (integerNum * 10) + DIGITS[char]`. Negate at end if needed.",
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = []
+    for _i in range(-10000, 10000):
+        _results.append(convertStrToInt(str(_i)) == _i)
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1721,6 +1722,16 @@ def commaFormat(number):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Work with the string form. Process digits from right to left, inserting commas every 3 digits.",
+        hint2="Handle the fractional part separately (no commas there). Build triplets from right, join with commas.",
+        solution="Split at '.', process whole part in groups of 3 from the right, rejoin.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1736,16 +1747,6 @@ def _(mo):
         commaFormat(1000.123456) == '1,000.123456',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Work with the string form. Process digits from right to left, inserting commas every 3 digits.",
-        hint2="Handle the fractional part separately (no commas there). Build triplets from right, join with commas.",
-        solution="Split at '.', process whole part in groups of 3 from the right, rejoin.",
-    )
     return
 
 
@@ -1770,6 +1771,16 @@ def getUppercase(text):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Create a dictionary mapping lowercase to uppercase letters. Loop over each character.",
+        hint2="If character is in the dictionary, use the uppercase version. Otherwise keep it as-is.",
+        solution="`LOWER_TO_UPPER = {'a':'A', ...}`. Loop, check `if char in LOWER_TO_UPPER`, append mapped or original.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1783,16 +1794,6 @@ def _(mo):
         getUppercase('') == '',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Create a dictionary mapping lowercase to uppercase letters. Loop over each character.",
-        hint2="If character is in the dictionary, use the uppercase version. Otherwise keep it as-is.",
-        solution="`LOWER_TO_UPPER = {'a':'A', ...}`. Loop, check `if char in LOWER_TO_UPPER`, append mapped or original.",
-    )
     return
 
 
@@ -1818,6 +1819,16 @@ def getTitleCase(text):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="A character is the start of a word if it's at index 0 OR the previous character is not a letter.",
+        hint2="Use `text[i-1].isalpha()` to check previous char. Uppercase the first letter of each word, lowercase everything else.",
+        solution="Loop with index, check if `i==0` or `not text[i-1].isalpha()`, then uppercase; else lowercase.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1832,16 +1843,6 @@ def _(mo):
         getTitleCase('cat,dog,RAT') == 'Cat,Dog,Rat',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="A character is the start of a word if it's at index 0 OR the previous character is not a letter.",
-        hint2="Use `text[i-1].isalpha()` to check previous char. Uppercase the first letter of each word, lowercase everything else.",
-        solution="Loop with index, check if `i==0` or `not text[i-1].isalpha()`, then uppercase; else lowercase.",
-    )
     return
 
 
@@ -1866,6 +1867,16 @@ def reverseString(text):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Convert string to list, swap characters from outside in (first with last, second with second-to-last).",
+        hint2="Loop over first half of indexes. Mirror index is `len(text) - 1 - i`. Swap `text[i]` and `text[mirrorIndex]`.",
+        solution="`text = list(text)`, loop `range(len(text)//2)`, swap mirrors, return `''.join(text)`.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1876,16 +1887,6 @@ def _(mo):
         reverseString('xxxx') == 'xxxx',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Convert string to list, swap characters from outside in (first with last, second with second-to-last).",
-        hint2="Loop over first half of indexes. Mirror index is `len(text) - 1 - i`. Swap `text[i]` and `text[mirrorIndex]`.",
-        solution="`text = list(text)`, loop `range(len(text)//2)`, swap mirrors, return `''.join(text)`.",
-    )
     return
 
 
@@ -1910,6 +1911,16 @@ def makeChange(amount):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Start with the largest coin (quarters = 25¢) and work down. Use `//` for count and `%` for remainder.",
+        hint2="For each denomination: if amount >= value, add `amount // value` coins, then `amount = amount % value`. Skip zeros.",
+        solution="Process quarters(25), dimes(10), nickels(5), pennies(1) in order. Only add key if count > 0.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1921,16 +1932,6 @@ def _(mo):
         makeChange(125) == {'quarters': 5},
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Start with the largest coin (quarters = 25¢) and work down. Use `//` for count and `%` for remainder.",
-        hint2="For each denomination: if amount >= value, add `amount // value` coins, then `amount = amount % value`. Skip zeros.",
-        solution="Process quarters(25), dimes(10), nickels(5), pennies(1) in order. Only add key if count > 0.",
-    )
     return
 
 
@@ -1955,6 +1956,16 @@ def shuffle(values):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Loop over each index and swap with a randomly chosen index using `random.randint(0, len(values)-1)`.",
+        hint2="`for i in range(len(values)): swapIndex = random.randint(0, len(values)-1)` then swap `values[i], values[swapIndex]`.",
+        solution="Single loop with swap: `values[i], values[swapIndex] = values[swapIndex], values[i]`.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -1971,16 +1982,6 @@ def _(mo):
     shuffle(_td2)
     _results.append(_td2 == [])
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Loop over each index and swap with a randomly chosen index using `random.randint(0, len(values)-1)`.",
-        hint2="`for i in range(len(values)): swapIndex = random.randint(0, len(values)-1)` then swap `values[i], values[swapIndex]`.",
-        solution="Single loop with swap: `values[i], values[swapIndex] = values[swapIndex], values[i]`.",
-    )
     return
 
 
@@ -2003,6 +2004,16 @@ def _(mo):
 # TODO: implement
 def collatz(startingNumber):
     pass
+
+
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="If even: n//2. If odd: 3*n+1. Keep going until n==1. Collect each value in a list.",
+        hint2="Start with `[startingNumber]`, use a while loop until `num != 1`. Use `% 2` to check even/odd.",
+        solution="`while num != 1: if num%2==0: num=num//2 else: num=3*num+1; sequence.append(num)`.",
+    )
+    return
 
 
 @app.cell
@@ -2028,16 +2039,6 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="If even: n//2. If odd: 3*n+1. Keep going until n==1. Collect each value in a list.",
-        hint2="Start with `[startingNumber]`, use a while loop until `num != 1`. Use `% 2` to check even/odd.",
-        solution="`while num != 1: if num%2==0: num=num//2 else: num=3*num+1; sequence.append(num)`.",
-    )
-    return
-
-
-@app.cell(hide_code=True)
 def _(mo):
     mo.md("""
     ## Exercise 40: Merging Two Sorted Lists
@@ -2058,6 +2059,16 @@ def mergeTwoLists(list1, list2):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Use two index pointers (i1, i2). Compare values at each pointer, append the smaller one.",
+        hint2="While both pointers are in bounds, compare and advance the smaller. Then append whatever remains from the other list.",
+        solution="Classic merge with `while i1 < len(list1) and i2 < len(list2)`, then two cleanup loops.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -2070,16 +2081,6 @@ def _(mo):
         mergeTwoLists([], [1, 2, 3]) == [1, 2, 3],
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Use two index pointers (i1, i2). Compare values at each pointer, append the smaller one.",
-        hint2="While both pointers are in bounds, compare and advance the smaller. Then append whatever remains from the other list.",
-        solution="Classic merge with `while i1 < len(list1) and i2 < len(list2)`, then two cleanup loops.",
-    )
     return
 
 
@@ -2105,6 +2106,16 @@ def rot13(text):
     pass
 
 
+@app.cell(hide_code=True)
+def _(show_hints):
+    show_hints(
+        hint1="Add 13 to each letter's ord() value. If it goes past 'z' (122) or 'Z' (90), subtract 26.",
+        hint2="Check `char.isalpha()` first. Use `ord()+13`, then check if past the end of alphabet for that case. Use `chr()` to convert back.",
+        solution="`rotated = ord(char)+13; if char.islower() and rotated>122: rotated-=26; if char.isupper() and rotated>90: rotated-=26`.",
+    )
+    return
+
+
 @app.cell
 def _(mo):
     # 📋 Tests - run to check your solution
@@ -2116,16 +2127,6 @@ def _(mo):
         rot13('ABCDEFGHIJKLMNOPQRSTUVWXYZ') == 'NOPQRSTUVWXYZABCDEFGHIJKLM',
     ]
     mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
-
-
-@app.cell(hide_code=True)
-def _(show_hints):
-    show_hints(
-        hint1="Add 13 to each letter's ord() value. If it goes past 'z' (122) or 'Z' (90), subtract 26.",
-        hint2="Check `char.isalpha()` first. Use `ord()+13`, then check if past the end of alphabet for that case. Use `chr()` to convert back.",
-        solution="`rotated = ord(char)+13; if char.islower() and rotated>122: rotated-=26; if char.isupper() and rotated>90: rotated-=26`.",
-    )
     return
 
 
@@ -2148,17 +2149,6 @@ def _(mo):
 # TODO: implement
 def bubbleSort(numbers):
     pass
-
-
-@app.cell
-def _(mo):
-    # 📋 Tests - run to check your solution
-    _results = [
-        bubbleSort([2, 0, 4, 1, 3]) == [0, 1, 2, 3, 4],
-        bubbleSort([2, 2, 2, 2]) == [2, 2, 2, 2],
-    ]
-    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
-    return
 
 
 @app.cell(hide_code=True)
