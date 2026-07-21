@@ -6,5 +6,6 @@ https://creativecommons.org/licenses/by-nc-sa/4.0/
 Exercise descriptions, hints, and test cases are adapted from:
 "Python Programming Exercises, Gently Explained" by Al Sweigart
 https://inventwithpython.com/pythongently/
+Licensed under CC BY-NC-SA 4.0.
 
-The original book is licensed under CC BY-NC-SA 4.0.
+Interactive notebook format, hint system, and tooling by Simon Evans.
