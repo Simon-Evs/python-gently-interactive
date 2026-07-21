@@ -1,10 +1,10 @@
-# Python Programming Exercises
+# Python Gently Interactive
 
-## Learn Python by solving exercises in interactive notebooks
+## Learn Python by solving exercises in an interactive notebook
 
 ### Setup
 
-This project uses [uv](https://docs.astral.sh/uv/) for dependency management and [marimo](https://marimo.io/) for interactive notebooks.
+This project uses [uv](https://docs.astral.sh/uv/) for dependency management and [marimo](https://marimo.io/) for the interactive notebook.
 
 ```bash
 # Install dependencies
@@ -16,12 +16,12 @@ uv run marimo edit notebooks/exercises.py
 
 ### How it works
 
-Each notebook contains ~10 exercises. For each exercise you get:
+The notebook contains 42 exercises. For each exercise you get:
 
-1. **Description** — what to implement
+1. **Description** — what to implement, with a link to the full explanation
 2. **Code cell** — write your solution here
 3. **Tests** — shows ✅ or ❌ as you work
-4. **Hints** — locked by default, unlockable with a code
+4. **Hints** — controlled by a slider at the top of the notebook
 
 ### Hint system
 
@@ -29,17 +29,10 @@ Use the slider at the top of the notebook to set your hint level:
 
 | Level | What you see |
 |-------|-------------|
-| 0 | Nothing — hints hidden |
+| 0 | No hints |
 | 1 | Conceptual nudge |
 | 2 | Detailed approach |
 | 3 | Full solution code |
-
-### Project Structure
-
-```
-notebooks/exercises.py  — Interactive exercise notebook (start here)
-pyproject.toml          — Project config and dependencies
-```
 
 ### Exercises
 
