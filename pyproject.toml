@@ -1,0 +1,12 @@
+[project]
+name = "python-programming-exercises-book"
+version = "0.1.0"
+description = "Learn Python by solving exercises in interactive marimo notebooks"
+authors = [
+    {name = "Simon Evans", email = "simevs@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "marimo>=0.13.0",
+]
