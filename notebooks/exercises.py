@@ -74,10 +74,10 @@ def _(show_hints):
         hint2="Concatenate 'Hello, ' with the user's name using `+` or an f-string. Make sure there's a space after the comma.",
         solution="""```python
     def hello():
-    print("Hello,world!")
-    print("What is your name?")
-    name = input()
-    print(f"Hello, {name}")
+        print("Hello,world!")
+        print("What is your name?")
+        name = input()
+        print(f"Hello, {name}")
     ```"""
     )
     return
@@ -140,10 +140,10 @@ def _(show_hints):
         hint2="Each function is just one line: a `return` statement with the formula. `celsius = (fahrenheit - 32) * (5/9)`",
         solution="""```python
     def convertToCelsius(fahrenheit):
-    return (fahrenheit - 32) * (5 / 9)
+        return (fahrenheit - 32) * (5 / 9)
 
     def convertToFahrenheit(celsius):
-    return celsius * (9 / 5) + 32
+        return celsius * (9 / 5) + 32
     ```"""
     )
     return
@@ -196,10 +196,10 @@ def _(show_hints):
         hint2="Return a boolean comparison: `return number % 2 == 1` for isOdd. Think about what happens with negative numbers.",
         solution="""```python
     def isOdd(num):
-    return num % 2 == 1
+        return num % 2 == 1
 
     def isEven(num):
-    return num % 2 == 0
+        return num % 2 == 0
     ```"""
     )
     return
@@ -263,16 +263,16 @@ def _(show_hints):
         hint2="Surface area has three pairs of faces: `(L×W + L×H + W×H) × 2`. Don't forget to multiply by 2!",
         solution="""```python
     def area(length, width):
-    return length * width
+        return length * width
 
     def perimeter(length, width):
-    return length * 2 + width * 2
+        return length * 2 + width * 2
 
     def volume(length, width, height):
-    return length * width * height
+        return length * width * height
 
     def surfaceArea(length, width, height):
-    return ((length * width) + (length * height) + (width * height)) * 2
+        return ((length * width) + (length * height) + (width * height)) * 2
     ```"""
     )
     return
@@ -321,20 +321,19 @@ def fizzBuzz(upTo: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="Check divisibility by 15 (both 3 and 5) FIRST, before checking 3 or 5 individually. Use `number % 15 == 0`.",
+        hint1="Check divisibility by both 3 AND 5 FIRST, before checking 3 or 5 individually. Use `number % 3 == 0 and number % 5 == 0`.",
         hint2="Use `print(..., end=' ')` to avoid newlines. Loop with `for number in range(1, upTo + 1)`.",
         solution="""```python
     def fizzBuzz(upTo):
-    for number in range(1, upTo + 1):
-        if number % 15 == 0:
-            print('FizzBuzz', end=' ')
-        elif number % 3 == 0:
-            print('Fizz', end=' ')
-        elif number % 5 == 0:
-            print('Buzz', end=' ')
-        else:
-            print(number, end=' ')
-    print()
+        for number in range(1, upTo + 1):
+            if number % 3 == 0 and number % 5 == 0:
+                print('FizzBuzz', end=' ')
+            elif number % 3 == 0:
+                print('Fizz', end=' ')
+            elif number % 5 == 0:
+                print('Buzz', end=' ')
+            else:
+                print(number, end=' ')
     ```"""
     )
     return
@@ -383,21 +382,19 @@ def ordinalSuffix(number: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="Convert the number to a string first. Check the last two digits for 11, 12, 13 (special 'th' cases) BEFORE checking the last digit.",
-        hint2="Use `numString[-2:]` to get the last two characters and `numString[-1:]` for the last character. The suffix depends on the last digit: 1→'st', 2→'nd', 3→'rd', everything else→'th'.",
+        hint1="Use the `%` modulo operator. `number % 100` gives the last two digits, `number % 10` gives the last digit.",
+        hint2="Check `number % 100 in (11, 12, 13)` first (these are all 'th'). Then check `number % 10`: 1→'st', 2→'nd', 3→'rd', everything else→'th'.",
         solution="""```python
     def ordinalSuffix(number):
-    numString = str(number)
-    if numString[-2:] in ('11', '12', '13'):
-        return numString + 'th'
-    if numString[-1:] == '1':
-        return numString + 'st'
-    if numString[-1:] == '2':
-        return numString + 'nd'
-    if numString[-1:] == '3':
-        return numString + 'rd'
-    else:
-        return numString + 'th'
+        if number % 100 in (11, 12, 13):
+            return str(number) + 'th'
+        if number % 10 == 1:
+            return str(number) + 'st'
+        if number % 10 == 2:
+            return str(number) + 'nd'
+        if number % 10 == 3:
+            return str(number) + 'rd'
+        return str(number) + 'th' 
     ```"""
     )
     return
@@ -449,8 +446,8 @@ def _(show_hints):
         hint2="Print each line as `f\"{i} {chr(i)}\"`. Remember range's upper bound is exclusive, so use 127 not 126.",
         solution="""```python
     def printASCIITable():
-    for i in range(32, 127):
-        print(f"{i} {chr(i)}")
+        for i in range(32, 127):
+            print(i, chr(i))
     ```"""
     )
     return
@@ -513,16 +510,16 @@ def _(show_hints):
         hint2="Write mode overwrites the file, append mode adds to the end. `fileObj.read()` returns the entire file contents as a string.",
         solution="""```python
     def writeToFile(filename, text):
-    with open(filename, "w") as f:
-        f.write(text)
+        with open(filename, "w") as f:
+            f.write(text)
 
     def appendToFile(filename, text):
-    with open(filename, "a") as f:
-        f.write(text)
+        with open(filename, "a") as f:
+            f.write(text)
 
     def readFromFile(filename):
-    with open(filename, "r") as f:
-        return f.read()
+        with open(filename, "r") as f:
+            return f.read()
     ```"""
     )
     return
@@ -547,7 +544,7 @@ def _(mo):
     mo.md("""
     ## Exercise 9: Chess Square Colour
 
-    Write a `getChessSquareColor()` function with parameters `column` and `row`. The function returns 'black' or 'white' depending on the color at the specified position. Chess boards are 8×8 (columns and rows 0 to 7). If column or row is outside 0-7, return a blank string. White is always in the top-left corner.
+    Write a `getChessSquareColor()` function with parameters `column` and `row`. The function returns 'black' or 'white' depending on the color at the specified position. Chess boards are 8×8 (columns and rows 1 to 8). If column or row is outside 1-8, return a blank string. White is always in the top-left corner.
 
 
     [📖 Full description](https://inventwithpython.com/pythongently/exercise9/)
@@ -564,16 +561,16 @@ def getChessSquareColor(column: int, row: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="If column + row is even the square is white, if odd it's black. First check bounds (0-7).",
-        hint2="Use `(column + row) % 2` — if it equals 0, return 'white', if 1 return 'black'. Return '' for out-of-bounds.",
+        hint1="If the even/oddness of column and row match, the square is white. First check bounds (1-8).",
+        hint2="Use `column % 2 == row % 2` — if they match, return 'white', otherwise 'black'. Return '' for out-of-bounds (outside 1-8).",
         solution="""```python
     def getChessSquareColor(column, row):
-    if column < 0 or column > 7 or row < 0 or row > 7:
-        return ""
-    if (column + row) % 2 == 1:
-        return "black"
-    else:
-        return "white"
+        if column < 1 or column > 8 or row < 1 or row > 8:
+            return ''
+        if column % 2 == row % 2:
+            return 'white'
+        else:
+            return 'black' 
     ```"""
     )
     return
@@ -583,10 +580,10 @@ def _(show_hints):
 def _(mo):
     # 📋 Tests - run to check your solution
     _results = [
-        getChessSquareColor(0, 0) == 'white',
-        getChessSquareColor(1, 0) == 'black',
-        getChessSquareColor(0, 1) == 'black',
-        getChessSquareColor(7, 7) == 'white',
+        getChessSquareColor(1, 1) == 'white',
+        getChessSquareColor(2, 1) == 'black',
+        getChessSquareColor(1, 2) == 'black',
+        getChessSquareColor(8, 8) == 'white',
         getChessSquareColor(0, 8) == '',
         getChessSquareColor(2, 9) == '',
     ]
@@ -620,16 +617,16 @@ def _(show_hints):
         hint2="If the slice matches, append `newText` and advance `i` by `len(oldText)`. Otherwise append `text[i]` and advance by 1.",
         solution="""```python
     def findAndReplace(text, oldText, newText):
-    replacedText = ""
-    i = 0
-    while i < len(text):
-        if text[i:i + len(oldText)] == oldText:
-            replacedText += newText
-            i += len(oldText)
-        else:
-            replacedText += text[i]
-            i += 1
-    return replacedText
+        replacedText = ""
+        i = 0
+        while i < len(text):
+            if text[i:i + len(oldText)] == oldText:
+                replacedText += newText
+                i += len(oldText)
+            else:
+                replacedText += text[i]
+                i += 1
+        return replacedText
     ```"""
     )
     return
@@ -679,19 +676,19 @@ def _(show_hints):
         hint2="Build a list of strings like '2h', '5m', '30s' — only add if the value is > 0. Then `' '.join()` them. Special case: if totalSeconds is 0, return '0s'.",
         solution="""```python
     def getHoursMinutesSeconds(totalSeconds):
-    hours = totalSeconds // 3600
-    min = (totalSeconds % 3600) // 60
-    sec = totalSeconds % 60
-    hms = []
-    if totalSeconds == 0:
-        hms.append(str(totalSeconds) + 's')
-    if hours > 0:
-        hms.append(str(hours) + 'h')
-    if min > 0:
-        hms.append(str(min) + 'm')
-    if sec > 0:
-        hms.append(str(sec) + 's')
-    return ' '.join(hms)
+        if totalSeconds == 0:
+            return '0s'
+        hours = totalSeconds // 3600
+        minutes = (totalSeconds % 3600) // 60
+        seconds = totalSeconds % 60
+        hms = []
+        if hours > 0:
+            hms.append(str(hours) + 'h')
+        if minutes > 0:
+            hms.append(str(minutes) + 'm')
+        if seconds > 0:
+            hms.append(str(seconds) + 's')
+        return ' '.join(hms)
     ```"""
     )
     return
@@ -745,13 +742,13 @@ def _(show_hints):
         hint2="Handle empty list first (return None). Set `smallest = numbers[0]`, then `for num in numbers: if num < smallest: smallest = num`.",
         solution="""```python
     def getSmallest(numbers):
-    if len(numbers) == 0:
-        return None
-    smallest = numbers[0]
-    for num in numbers:
-        if num < smallest:
-            smallest = num
-    return smallest
+        if len(numbers) == 0:
+            return None
+        smallest = numbers[0]
+        for number in numbers:
+            if number < smallest:
+                smallest = number
+        return smallest
     ```"""
     )
     return
@@ -806,16 +803,16 @@ def _(show_hints):
         hint2="Product starts at 1 (not 0!) because anything × 0 = 0. Use `+=` for sum and `*=` for product.",
         solution="""```python
     def calculateSum(numbers):
-    total = 0
-    for num in numbers:
-        total += num
-    return total
+        result = 0
+        for number in numbers:
+            result += number
+        return result
 
     def calculateProduct(numbers):
-    total = 1
-    for num in numbers:
-        total *= num
-    return total
+        result = 1
+        for number in numbers:
+            result *= number
+        return result
     ```"""
     )
     return
@@ -840,8 +837,8 @@ def _(mo):
     ## Exercise 14: Average
 
     Write an `average()` function with a `numbers` parameter. Returns the statistical
-    average of the list of numbers. Passing an empty list should return `None` (or 0
-    as implemented). Don't use Python's built-in `sum()` function.
+    average of the list of numbers. Passing an empty list should return `None`.
+    Don't use Python's built-in `sum()` function.
 
 
     [📖 Full description](https://inventwithpython.com/pythongently/exercise14/)
@@ -859,15 +856,15 @@ def average(numbers):
 def _(show_hints):
     show_hints(
         hint1="Sum all numbers and divide by how many there are. Use `len()` for the count.",
-        hint2="Handle empty list first (return 0 or None). Then: `total / len(numbers)`.",
+        hint2="Handle empty list first (return None). Then: `total / len(numbers)`.",
         solution="""```python
     def average(numbers):
-    if len(numbers) == 0:
-        return 0
-    total = 0
-    for num in numbers:
-        total += num
-    return total / len(numbers)
+        if len(numbers) == 0:
+            return None
+        total = 0
+        for number in numbers:
+            total += number
+        return total / len(numbers)
     ```"""
     )
     return
@@ -914,14 +911,14 @@ def _(show_hints):
         hint2="If even length: average the two middle values `(numbers[mid] + numbers[mid-1]) / 2`. If odd: just `numbers[mid]`.",
         solution="""```python
     def median(numbers):
-    if len(numbers) == 0:
-        return None
-    numbers.sort()
-    middleIndex = len(numbers) // 2
-    if len(numbers) % 2 == 0:
-        return (numbers[middleIndex] + numbers[middleIndex - 1]) / 2
-    else:
-        return numbers[middleIndex]
+        if len(numbers) == 0:
+            return None
+        numbers.sort()
+        middleIndex = len(numbers) // 2
+        if len(numbers) % 2 == 0:
+            return (numbers[middleIndex] + numbers[middleIndex - 1]) / 2
+        else:
+            return numbers[middleIndex]
     ```"""
     )
     return
@@ -967,19 +964,19 @@ def _(show_hints):
         hint2="Loop through numbers, incrementing `numberCount[number]`. Track `mostFreqNumber` and `mostFreqNumberCount` as you go.",
         solution="""```python
     def mode(numbers):
-    if len(numbers) == 0:
-        return None
-    numberCount = {}
-    mostFreqNumber = None
-    mostFreqNumberCount = 0
-    for number in numbers:
-        if number not in numberCount:
-            numberCount[number] = 0
-        numberCount[number] += 1
-        if numberCount[number] > mostFreqNumberCount:
-            mostFreqNumber = number
-            mostFreqNumberCount = numberCount[number]
-    return mostFreqNumber
+        if len(numbers) == 0:
+            return None
+        numberCount = {}
+        mostFreqNumber = None
+        mostFreqNumberCount = 0
+        for number in numbers:
+            if number not in numberCount:
+                numberCount[number] = 0
+            numberCount[number] += 1
+            if numberCount[number] > mostFreqNumberCount:
+                mostFreqNumber = number
+                mostFreqNumberCount = numberCount[number]
+        return mostFreqNumber
     ```"""
     )
     return
@@ -1034,10 +1031,10 @@ def _(show_hints):
     import random
 
     def rollDice(numberOfDice):
-    total = 0
-    for i in range(numberOfDice):
-        total += random.randint(1, 6)
-    return total
+        total = 0
+        for i in range(numberOfDice):
+            total += random.randint(1, 6)
+        return total
     ```"""
     )
     return
@@ -1084,9 +1081,9 @@ def _(show_hints):
         hint2="Paid coffees = `numberOfCoffees - numberOfFreeCoffees`. Return `numberOfPaidCoffees * pricePerCoffee`.",
         solution="""```python
     def getCostOfCoffee(numberOfCoffees, pricePerCoffee):
-    numberOfFreeCoffees = numberOfCoffees // 9
-    numberOfPaidCoffees = numberOfCoffees - numberOfFreeCoffees
-    return numberOfPaidCoffees * pricePerCoffee
+        numberOfFreeCoffees = numberOfCoffees // 9
+        numberOfPaidCoffees = numberOfCoffees - numberOfFreeCoffees
+        return numberOfPaidCoffees * pricePerCoffee
     ```"""
     )
     return
@@ -1158,17 +1155,17 @@ def _(show_hints):
     ALL_CHARS = LOWER_LETTERS + UPPER_LETTERS + NUMBERS + SPECIAL
 
     def generatePassword(length):
-    if length < 12:
-        length = 12
-    password = []
-    password.append(LOWER_LETTERS[random.randint(0, 25)])
-    password.append(UPPER_LETTERS[random.randint(0, 25)])
-    password.append(NUMBERS[random.randint(0, 9)])
-    password.append(SPECIAL[random.randint(0, 12)])
-    while len(password) < length:
-        password.append(ALL_CHARS[random.randint(0, 74)])
-    random.shuffle(password)
-    return ''.join(password)
+        if length < 12:
+            length = 12
+        password = []
+        password.append(LOWER_LETTERS[random.randint(0, 25)])
+        password.append(UPPER_LETTERS[random.randint(0, 25)])
+        password.append(NUMBERS[random.randint(0, 9)])
+        password.append(SPECIAL[random.randint(0, 12)])
+        while len(password) < length:
+            password.append(ALL_CHARS[random.randint(0, 74)])
+        random.shuffle(password)
+        return ''.join(password)
     ```"""
     )
     return
@@ -1223,14 +1220,14 @@ def _(show_hints):
         hint2="Use `if year % 400 == 0: return True`, `elif year % 100 == 0: return False`, `elif year % 4 == 0: return True`, `else: return False`.",
         solution="""```python
     def isLeapYear(year):
-    if year % 400 == 0:
-        return True
-    elif year % 100 == 0:
-        return False
-    elif year % 4 == 0:
-        return True
-    else:
-        return False
+        if year % 400 == 0:
+            return True
+        elif year % 100 == 0:
+            return False
+        elif year % 4 == 0:
+            return True
+        else:
+            return False
     ```"""
     )
     return
@@ -1326,7 +1323,7 @@ def _(show_hints):
     show_hints(
         hint1="Check if both moves are the same first (tie). Then check the 3 winning conditions for player 1.",
         hint2="Player 1 wins if: rock vs scissors, paper vs rock, scissors vs paper. Everything else is player 2 winning.",
-        solution="```python\ndef rpsWinner(player1, player2):\n    if player1 == player2:\n        return 'tie'\n    if (player1 == 'rock' and player2 == 'scissors') or \\\n       (player1 == 'paper' and player2 == 'rock') or \\\n       (player1 == 'scissors' and player2 == 'paper'):\n        return 'player one'\n    return 'player two'\n```"
+        solution="```python\ndef rpsWinner(move1, move2):\n    if move1 == 'rock' and move2 == 'paper':\n        return 'player two'\n    elif move1 == 'rock' and move2 == 'scissors':\n        return 'player one'\n    elif move1 == 'paper' and move2 == 'scissors':\n        return 'player two'\n    elif move1 == 'paper' and move2 == 'rock':\n        return 'player one'\n    elif move1 == 'scissors' and move2 == 'rock':\n        return 'player two'\n    elif move1 == 'scissors' and move2 == 'paper':\n        return 'player one'\n    else:\n        return 'tie'\n```"
     )
     return
 
@@ -1382,6 +1379,24 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        bottlesOfBeer()
+    _out = _buf.getvalue()
+    _results = [
+        "99 bottles of beer on the wall," in _out,
+        "1 bottle of beer on the wall," in _out,
+        "No more bottles of beer on the wall!" in _out,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1414,6 +1429,26 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        every15Minutes()
+    _out = _buf.getvalue()
+    _lines = _out.strip().split(chr(10))
+    _results = [
+        len(_lines) == 96,
+        "12:00 am" in _out,
+        "11:45 pm" in _out,
+        "1:15 am" in _out,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1443,6 +1478,24 @@ def _(show_hints):
         hint2="Print header row and separator line first. Then for each row, print the row label, a pipe, then each product right-justified to 2 chars.",
         solution="```python\ndef multiplicationTable():\n    print('  | 1  2  3  4  5  6  7  8  9 10')\n    print('--+------------------------------')\n    for row in range(1, 11):\n        print(str(row).rjust(2) + '|', end='')\n        for col in range(1, 11):\n            print(str(row * col).rjust(2) + ' ', end='')\n        print()\n```"
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        multiplicationTable()
+    _out = _buf.getvalue()
+    _results = [
+        "| 1" in _out,
+        "10|10" in _out or "10| 10" in _out,
+        "100" in _out,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1520,6 +1573,24 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        drawRectangle(10, 4)
+    _out = _buf.getvalue()
+    _lines = _out.strip().split(chr(10))
+    _results = [
+        len(_lines) == 4,
+        all(line == "##########" for line in _lines),
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1550,6 +1621,26 @@ def _(show_hints):
         hint2="Dashes and spaces are `width - 2` characters wide. Middle rows repeat `height - 2` times.",
         solution="```python\ndef drawBorder(width, height):\n    if width < 2 or height < 2:\n        return\n    print('+' + ('-' * (width - 2)) + '+')\n    for i in range(height - 2):\n        print('|' + (' ' * (width - 2)) + '|')\n    print('+' + ('-' * (width - 2)) + '+')\n```"
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        drawBorder(16, 4)
+    _out = _buf.getvalue()
+    _lines = _out.strip().split(chr(10))
+    _results = [
+        len(_lines) == 4,
+        _lines[0] == "+--------------+",
+        _lines[-1] == "+--------------+",
+        _lines[1] == "|              |",
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
@@ -1586,6 +1677,25 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        drawPyramid(5)
+    _out = _buf.getvalue()
+    _lines = _out.strip().split(chr(10))
+    _results = [
+        len(_lines) == 5,
+        _lines[0].strip() == "#",
+        _lines[-1].strip() == "#########",
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1619,6 +1729,24 @@ def _(show_hints):
     return
 
 
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    import io as _io
+    from contextlib import redirect_stdout as _redirect_stdout
+    _buf = _io.StringIO()
+    with _redirect_stdout(_buf):
+        drawBox(2)
+    _out = _buf.getvalue()
+    _results = [
+        "+----+" in _out,
+        "/" in _out,
+        "|" in _out,
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
+    return
+
+
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
@@ -1645,7 +1773,27 @@ def _(show_hints):
     show_hints(
         hint1="Use `% 10` to get the last digit and `// 10` to remove it. Build the string from right to left.",
         hint2="Map digits 0-9 to strings with a dictionary. Handle 0 and negatives as special cases.",
-        solution="Use a while loop: `onesPlaceDigit = integerNum % 10`, prepend the string digit, then `integerNum //= 10`.",
+        solution="""```python
+    def convertIntToStr(integerNum):
+        if integerNum == 0:
+            return '0'
+        DIGITS_INT_TO_STR = {0: '0', 1: '1', 2: '2', 3: '3', 4: '4',
+            5: '5', 6: '6', 7: '7', 8: '8', 9: '9'}
+        if integerNum < 0:
+            isNegative = True
+            integerNum = -integerNum
+        else:
+            isNegative = False
+        stringNum = ''
+        while integerNum > 0:
+            onesPlaceDigit = integerNum % 10
+            stringNum = DIGITS_INT_TO_STR[onesPlaceDigit] + stringNum
+            integerNum //= 10
+        if isNegative:
+            return '-' + stringNum
+        else:
+            return stringNum
+    ```""",
     )
     return
 
@@ -1686,7 +1834,24 @@ def _(show_hints):
     show_hints(
         hint1="Use a dictionary mapping '0'-'9' to 0-9. Process characters left to right.",
         hint2="Multiply running total by 10, then add the current digit. Handle negative sign at start.",
-        solution="Loop over chars, `integerNum = (integerNum * 10) + DIGITS[char]`. Negate at end if needed.",
+        solution="""```python
+    def convertStrToInt(stringNum):
+        DIGITS_STR_TO_INT = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
+            '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+        if stringNum[0] == '-':
+            isNegative = True
+            stringNum = stringNum[1:]
+        else:
+            isNegative = False
+        integerNum = 0
+        for i in range(len(stringNum)):
+            digit = DIGITS_STR_TO_INT[stringNum[i]]
+            integerNum = (integerNum * 10) + digit
+        if isNegative:
+            return -integerNum
+        else:
+            return integerNum
+    ```""",
     )
     return
 
@@ -1727,7 +1892,25 @@ def _(show_hints):
     show_hints(
         hint1="Work with the string form. Process digits from right to left, inserting commas every 3 digits.",
         hint2="Handle the fractional part separately (no commas there). Build triplets from right, join with commas.",
-        solution="Split at '.', process whole part in groups of 3 from the right, rejoin.",
+        solution="""```python
+    def commaFormat(number):
+        number = str(number)
+        if '.' in number:
+            fractionalPart = number[number.index('.'):]
+            number = number[:number.index('.')]
+        else:
+            fractionalPart = ''
+        triplet = ''
+        commaNumber = ''
+        for i in range(len(number) - 1, -1, -1):
+            triplet = number[i] + triplet
+            if len(triplet) == 3:
+                commaNumber = triplet + ',' + commaNumber
+                triplet = ''
+        if triplet != '':
+            commaNumber = triplet + ',' + commaNumber
+        return commaNumber[:-1] + fractionalPart
+    ```""",
     )
     return
 
@@ -1776,7 +1959,22 @@ def _(show_hints):
     show_hints(
         hint1="Create a dictionary mapping lowercase to uppercase letters. Loop over each character.",
         hint2="If character is in the dictionary, use the uppercase version. Otherwise keep it as-is.",
-        solution="`LOWER_TO_UPPER = {'a':'A', ...}`. Loop, check `if char in LOWER_TO_UPPER`, append mapped or original.",
+        solution="""```python
+    LOWER_TO_UPPER = {'a': 'A', 'b': 'B', 'c': 'C', 'd': 'D', 'e': 'E',
+    'f': 'F', 'g': 'G', 'h': 'H', 'i': 'I', 'j': 'J', 'k': 'K',
+    'l': 'L', 'm': 'M', 'n': 'N', 'o': 'O', 'p': 'P', 'q': 'Q',
+    'r': 'R', 's': 'S', 't': 'T', 'u': 'U', 'v': 'V', 'w': 'W',
+    'x': 'X', 'y': 'Y', 'z': 'Z'}
+
+    def getUppercase(text):
+        uppercaseText = ''
+        for character in text:
+            if character in LOWER_TO_UPPER:
+                uppercaseText += LOWER_TO_UPPER[character]
+            else:
+                uppercaseText += character
+        return uppercaseText
+    ```""",
     )
     return
 
@@ -1824,7 +2022,18 @@ def _(show_hints):
     show_hints(
         hint1="A character is the start of a word if it's at index 0 OR the previous character is not a letter.",
         hint2="Use `text[i-1].isalpha()` to check previous char. Uppercase the first letter of each word, lowercase everything else.",
-        solution="Loop with index, check if `i==0` or `not text[i-1].isalpha()`, then uppercase; else lowercase.",
+        solution="""```python
+    def getTitleCase(text):
+        titledText = ''
+        for i in range(len(text)):
+            if i == 0:
+                titledText += text[i].upper()
+            elif text[i].isalpha() and not text[i - 1].isalpha():
+                titledText += text[i].upper()
+            else:
+                titledText += text[i].lower()
+        return titledText
+    ```""",
     )
     return
 
@@ -1872,7 +2081,14 @@ def _(show_hints):
     show_hints(
         hint1="Convert string to list, swap characters from outside in (first with last, second with second-to-last).",
         hint2="Loop over first half of indexes. Mirror index is `len(text) - 1 - i`. Swap `text[i]` and `text[mirrorIndex]`.",
-        solution="`text = list(text)`, loop `range(len(text)//2)`, swap mirrors, return `''.join(text)`.",
+        solution="""```python
+    def reverseString(text):
+        text = list(text)
+        for i in range(len(text) // 2):
+            mirrorIndex = len(text) - 1 - i
+            text[i], text[mirrorIndex] = text[mirrorIndex], text[i]
+        return ''.join(text)
+    ```""",
     )
     return
 
@@ -1916,7 +2132,22 @@ def _(show_hints):
     show_hints(
         hint1="Start with the largest coin (quarters = 25¢) and work down. Use `//` for count and `%` for remainder.",
         hint2="For each denomination: if amount >= value, add `amount // value` coins, then `amount = amount % value`. Skip zeros.",
-        solution="Process quarters(25), dimes(10), nickels(5), pennies(1) in order. Only add key if count > 0.",
+        solution="""```python
+    def makeChange(amount):
+        change = {}
+        if amount >= 25:
+            change['quarters'] = amount // 25
+            amount = amount % 25
+        if amount >= 10:
+            change['dimes'] = amount // 10
+            amount = amount % 10
+        if amount >= 5:
+            change['nickels'] = amount // 5
+            amount = amount % 5
+        if amount >= 1:
+            change['pennies'] = amount
+        return change
+    ```""",
     )
     return
 
@@ -1961,7 +2192,14 @@ def _(show_hints):
     show_hints(
         hint1="Loop over each index and swap with a randomly chosen index using `random.randint(0, len(values)-1)`.",
         hint2="`for i in range(len(values)): swapIndex = random.randint(0, len(values)-1)` then swap `values[i], values[swapIndex]`.",
-        solution="Single loop with swap: `values[i], values[swapIndex] = values[swapIndex], values[i]`.",
+        solution="""```python
+    import random
+
+    def shuffle(values):
+        for i in range(len(values)):
+            swapIndex = random.randint(0, len(values) - 1)
+            values[i], values[swapIndex] = values[swapIndex], values[i]
+    ```""",
     )
     return
 
@@ -2011,7 +2249,20 @@ def _(show_hints):
     show_hints(
         hint1="If even: n//2. If odd: 3*n+1. Keep going until n==1. Collect each value in a list.",
         hint2="Start with `[startingNumber]`, use a while loop until `num != 1`. Use `% 2` to check even/odd.",
-        solution="`while num != 1: if num%2==0: num=num//2 else: num=3*num+1; sequence.append(num)`.",
+        solution="""```python
+    def collatz(startingNumber):
+        if startingNumber < 1:
+            return []
+        sequence = [startingNumber]
+        num = startingNumber
+        while num != 1:
+            if num % 2 == 1:
+                num = 3 * num + 1
+            else:
+                num = num // 2
+            sequence.append(num)
+        return sequence
+    ```""",
     )
     return
 
@@ -2064,7 +2315,26 @@ def _(show_hints):
     show_hints(
         hint1="Use two index pointers (i1, i2). Compare values at each pointer, append the smaller one.",
         hint2="While both pointers are in bounds, compare and advance the smaller. Then append whatever remains from the other list.",
-        solution="Classic merge with `while i1 < len(list1) and i2 < len(list2)`, then two cleanup loops.",
+        solution="""```python
+    def mergeTwoLists(list1, list2):
+        result = []
+        i1 = 0
+        i2 = 0
+        while i1 < len(list1) and i2 < len(list2):
+            if list1[i1] < list2[i2]:
+                result.append(list1[i1])
+                i1 += 1
+            else:
+                result.append(list2[i2])
+                i2 += 1
+        if i1 < len(list1):
+            for j in range(i1, len(list1)):
+                result.append(list1[j])
+        if i2 < len(list2):
+            for j in range(i2, len(list2)):
+                result.append(list2[j])
+        return result
+    ```""",
     )
     return
 
@@ -2111,7 +2381,21 @@ def _(show_hints):
     show_hints(
         hint1="Add 13 to each letter's ord() value. If it goes past 'z' (122) or 'Z' (90), subtract 26.",
         hint2="Check `char.isalpha()` first. Use `ord()+13`, then check if past the end of alphabet for that case. Use `chr()` to convert back.",
-        solution="`rotated = ord(char)+13; if char.islower() and rotated>122: rotated-=26; if char.isupper() and rotated>90: rotated-=26`.",
+        solution="""```python
+    def rot13(text):
+        encryptedText = ''
+        for character in text:
+            if not character.isalpha():
+                encryptedText += character
+            else:
+                rotatedLetterOrdinal = ord(character) + 13
+                if character.islower() and rotatedLetterOrdinal > 122:
+                    rotatedLetterOrdinal -= 26
+                if character.isupper() and rotatedLetterOrdinal > 90:
+                    rotatedLetterOrdinal -= 26
+                encryptedText += chr(rotatedLetterOrdinal)
+        return encryptedText
+    ```""",
     )
     return
 
@@ -2156,8 +2440,26 @@ def _(show_hints):
     show_hints(
         hint1="Use nested loops. Compare every pair of indexes and swap if the left value is greater than the right.",
         hint2="Outer: `range(len(numbers)-1)`. Inner: `range(i+1, len(numbers))`. Swap if `numbers[i] > numbers[j]`.",
-        solution="`for i in range(len(numbers)-1): for j in range(i+1,len(numbers)): if numbers[i]>numbers[j]: numbers[i],numbers[j]=numbers[j],numbers[i]`.",
+        solution="""```python
+    def bubbleSort(numbers):
+        for i in range(len(numbers) - 1):
+            for j in range(i, len(numbers)):
+                if numbers[i] > numbers[j]:
+                    numbers[i], numbers[j] = numbers[j], numbers[i]
+        return numbers
+    ```"""
     )
+    return
+
+
+@app.cell
+def _(mo):
+    # 📋 Tests - run to check your solution
+    _results = [
+        bubbleSort([2, 0, 4, 1, 3]) == [0, 1, 2, 3, 4],
+        bubbleSort([2, 2, 2, 2]) == [2, 2, 2, 2],
+    ]
+    mo.md(f"**📋 Tests:** {'✅ all passed' if all(_results) else '❌ some failed'}")
     return
 
 
