@@ -321,12 +321,12 @@ def fizzBuzz(upTo: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="Check divisibility by 15 (both 3 and 5) FIRST, before checking 3 or 5 individually. Use `number % 15 == 0`.",
+        hint1="Check divisibility by both 3 AND 5 FIRST, before checking 3 or 5 individually. Use `number % 3 == 0 and number % 5 == 0`.",
         hint2="Use `print(..., end=' ')` to avoid newlines. Loop with `for number in range(1, upTo + 1)`.",
         solution="""```python
-    def fizzBuzz(upTo):
+def fizzBuzz(upTo):
     for number in range(1, upTo + 1):
-        if number % 15 == 0:
+        if number % 3 == 0 and number % 5 == 0:
             print('FizzBuzz', end=' ')
         elif number % 3 == 0:
             print('Fizz', end=' ')
@@ -334,8 +334,7 @@ def _(show_hints):
             print('Buzz', end=' ')
         else:
             print(number, end=' ')
-    print()
-    ```"""
+```"""
     )
     return
 
@@ -383,22 +382,20 @@ def ordinalSuffix(number: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="Convert the number to a string first. Check the last two digits for 11, 12, 13 (special 'th' cases) BEFORE checking the last digit.",
-        hint2="Use `numString[-2:]` to get the last two characters and `numString[-1:]` for the last character. The suffix depends on the last digit: 1→'st', 2→'nd', 3→'rd', everything else→'th'.",
+        hint1="Use the `%` modulo operator. `number % 100` gives the last two digits, `number % 10` gives the last digit.",
+        hint2="Check `number % 100 in (11, 12, 13)` first (these are all 'th'). Then check `number % 10`: 1→'st', 2→'nd', 3→'rd', everything else→'th'.",
         solution="""```python
-    def ordinalSuffix(number):
-    numString = str(number)
-    if numString[-2:] in ('11', '12', '13'):
-        return numString + 'th'
-    if numString[-1:] == '1':
-        return numString + 'st'
-    if numString[-1:] == '2':
-        return numString + 'nd'
-    if numString[-1:] == '3':
-        return numString + 'rd'
-    else:
-        return numString + 'th'
-    ```"""
+def ordinalSuffix(number):
+    if number % 100 in (11, 12, 13):
+        return str(number) + 'th'
+    if number % 10 == 1:
+        return str(number) + 'st'
+    if number % 10 == 2:
+        return str(number) + 'nd'
+    if number % 10 == 3:
+        return str(number) + 'rd'
+    return str(number) + 'th'
+```"""
     )
     return
 
@@ -547,7 +544,7 @@ def _(mo):
     mo.md("""
     ## Exercise 9: Chess Square Colour
 
-    Write a `getChessSquareColor()` function with parameters `column` and `row`. The function returns 'black' or 'white' depending on the color at the specified position. Chess boards are 8×8 (columns and rows 0 to 7). If column or row is outside 0-7, return a blank string. White is always in the top-left corner.
+    Write a `getChessSquareColor()` function with parameters `column` and `row`. The function returns 'black' or 'white' depending on the color at the specified position. Chess boards are 8×8 (columns and rows 1 to 8). If column or row is outside 1-8, return a blank string. White is always in the top-left corner.
 
 
     [📖 Full description](https://inventwithpython.com/pythongently/exercise9/)
@@ -564,17 +561,17 @@ def getChessSquareColor(column: int, row: int):
 @app.cell(hide_code=True)
 def _(show_hints):
     show_hints(
-        hint1="If column + row is even the square is white, if odd it's black. First check bounds (0-7).",
-        hint2="Use `(column + row) % 2` — if it equals 0, return 'white', if 1 return 'black'. Return '' for out-of-bounds.",
+        hint1="If the even/oddness of column and row match, the square is white. First check bounds (1-8).",
+        hint2="Use `column % 2 == row % 2` — if they match, return 'white', otherwise 'black'. Return '' for out-of-bounds (outside 1-8).",
         solution="""```python
-    def getChessSquareColor(column, row):
-    if column < 0 or column > 7 or row < 0 or row > 7:
-        return ""
-    if (column + row) % 2 == 1:
-        return "black"
+def getChessSquareColor(column, row):
+    if column < 1 or column > 8 or row < 1 or row > 8:
+        return ''
+    if column % 2 == row % 2:
+        return 'white'
     else:
-        return "white"
-    ```"""
+        return 'black'
+```"""
     )
     return
 
@@ -583,10 +580,10 @@ def _(show_hints):
 def _(mo):
     # 📋 Tests - run to check your solution
     _results = [
-        getChessSquareColor(0, 0) == 'white',
-        getChessSquareColor(1, 0) == 'black',
-        getChessSquareColor(0, 1) == 'black',
-        getChessSquareColor(7, 7) == 'white',
+        getChessSquareColor(1, 1) == 'white',
+        getChessSquareColor(2, 1) == 'black',
+        getChessSquareColor(1, 2) == 'black',
+        getChessSquareColor(8, 8) == 'white',
         getChessSquareColor(0, 8) == '',
         getChessSquareColor(2, 9) == '',
     ]
@@ -840,8 +837,8 @@ def _(mo):
     ## Exercise 14: Average
 
     Write an `average()` function with a `numbers` parameter. Returns the statistical
-    average of the list of numbers. Passing an empty list should return `None` (or 0
-    as implemented). Don't use Python's built-in `sum()` function.
+    average of the list of numbers. Passing an empty list should return `None`.
+    Don't use Python's built-in `sum()` function.
 
 
     [📖 Full description](https://inventwithpython.com/pythongently/exercise14/)
@@ -859,16 +856,16 @@ def average(numbers):
 def _(show_hints):
     show_hints(
         hint1="Sum all numbers and divide by how many there are. Use `len()` for the count.",
-        hint2="Handle empty list first (return 0 or None). Then: `total / len(numbers)`.",
+        hint2="Handle empty list first (return None). Then: `total / len(numbers)`.",
         solution="""```python
-    def average(numbers):
+def average(numbers):
     if len(numbers) == 0:
-        return 0
+        return None
     total = 0
-    for num in numbers:
-        total += num
+    for number in numbers:
+        total += number
     return total / len(numbers)
-    ```"""
+```"""
     )
     return
 
@@ -1326,7 +1323,7 @@ def _(show_hints):
     show_hints(
         hint1="Check if both moves are the same first (tie). Then check the 3 winning conditions for player 1.",
         hint2="Player 1 wins if: rock vs scissors, paper vs rock, scissors vs paper. Everything else is player 2 winning.",
-        solution="```python\ndef rpsWinner(player1, player2):\n    if player1 == player2:\n        return 'tie'\n    if (player1 == 'rock' and player2 == 'scissors') or \\\n       (player1 == 'paper' and player2 == 'rock') or \\\n       (player1 == 'scissors' and player2 == 'paper'):\n        return 'player one'\n    return 'player two'\n```"
+        solution="```python\ndef rpsWinner(move1, move2):\n    if move1 == 'rock' and move2 == 'paper':\n        return 'player two'\n    elif move1 == 'rock' and move2 == 'scissors':\n        return 'player one'\n    elif move1 == 'paper' and move2 == 'scissors':\n        return 'player two'\n    elif move1 == 'paper' and move2 == 'rock':\n        return 'player one'\n    elif move1 == 'scissors' and move2 == 'rock':\n        return 'player two'\n    elif move1 == 'scissors' and move2 == 'paper':\n        return 'player one'\n    else:\n        return 'tie'\n```"
     )
     return
 
