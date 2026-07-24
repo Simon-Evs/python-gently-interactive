@@ -12,6 +12,9 @@ uv sync
 
 # Open the notebook (edit mode - you can write and save your solutions)
 uv run marimo edit notebooks/exercises.py
+
+# Reset - clear all your answers and start fresh
+cp notebooks/.exercises_template.py notebooks/exercises.py
 ```
 
 ### How it works
